@@ -1,0 +1,100 @@
+.contact_form .form-group {
+  display: block;
+  width: 100%;
+  position: relative;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  background: #F0F0F0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+.contact_form .form-group label:not(.error) {
+  position: absolute;
+  top: 16px;
+  left: 24px;
+  font-size: 16px;
+  line-height: 16px;
+  color: #242222;
+  white-space: nowrap;
+  cursor: text;
+  -webkit-transition: 0.2s linear;
+  -moz-transition: 0.2s linear;
+  -ms-transition: 0.2s linear;
+  -o-transition: 0.2s linear; }
+.contact_form .form-group label:not(.error) .starrequired {
+  color: #e02222; }
+.contact_form .form-group label.error {
+  color: #e02222 !important;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: -22px;
+  right: 0;
+  font-size: 0.8em;
+  z-index: 6;
+  left: auto; }
+.contact_form .form-group .input .form-control {
+  height: 48px;
+  display: block;
+  width: 100%;
+  font-size: 16px;
+  box-shadow: none;
+  border: 1px solid transparent;
+  background: #F0F0F0;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  padding: 18px 24px 2px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+.contact_form .form-group .input.error input, .contact_form .form-group .input.error textarea {
+  border-color: #e02222; }
+.contact_form .form-group .input.error .error {
+  opacity: 1;
+  visibility: visible; }
+.contact_form .form-group .input .error {
+  opacity: 0;
+  visibility: hidden; }
+.contact_form .form-group.input-filed .input .form-control {
+  border-color: #3F9F45; }
+.contact_form .form-group.input-filed .input.error input, .contact_form .form-group.input-filed .input.error textarea {
+  border-color: #e02222; }
+.contact_form .form-group.input-filed label:not(.error) {
+  font-size: 10px;
+  top: 5px;
+  color: #929191; }
+.contact_form .form-group.input-filed .input .form-control {
+  background: #FFF; }
+.contact_form .message {
+  margin-top: 32px; }
+
+.form-success {
+  min-height: 80px; }
+.form-success svg {
+  width: 64px;
+  height: 64px;
+  color: #fff;
+  float: left; }
+.form-success .text {
+  padding-left: 74px;
+  color: #555; }
+.form-success .text .title {
+  font-size: 24px;
+  border-bottom: 2px solid #38ac61;
+  font-weight: 600;
+  line-height: 30px;
+  margin-bottom: 22px;
+  padding-bottom: 4px;
+  display: inline-block;
+  vertical-align: top; }
+.form-success p {
+  font-size: 14px; }
+.form-success p:last-child {
+  margin: 0; }
+
+
+.politic.error {
+  color: red;
+}

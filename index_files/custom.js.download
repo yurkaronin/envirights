@@ -1,0 +1,117 @@
+function dump(val)
+{
+    console.log(val);
+}
+
+(function (window) {
+    "use strict";
+
+    if (window.JCVGNewsList)
+        return;
+
+    window.JCVGNewsList = function (arParams) {
+
+        this.button_show_next = "";
+        this.news_list_container = "NEWS_LIST";
+        this.pagination_container = "PAGINATION_CONTAINER";
+
+        this.button_tag = "";
+        this.select = "";
+
+        this.obButtonShowNext = null;
+        this.obNewsListContainer = null;
+        this.obPaginationContainer = null;
+
+        this.obButtonTag = null;
+        this.obSelect = null;
+        if (arParams.BUTTON_SHOW_NEXT)
+        {
+            this.button_show_next = arParams.BUTTON_SHOW_NEXT;
+        }
+
+        if (arParams.BUTTON_TAG)
+        {
+            this.button_tag = arParams.BUTTON_TAG;
+        }
+        if (arParams.SELECT)
+        {
+            this.select = arParams.SELECT;
+        }
+
+        BX.ready(BX.delegate(this.init,this));
+    };
+
+    window.JCVGNewsList.prototype = {
+        init: function ()
+        {
+            this.obNewsListContainer = BX(this.news_list_container);
+            this.obPaginationContainer = BX(this.pagination_container);
+
+            // show
+            if (this.button_show_next.length > 0)
+            {
+                this.obButtonShowNext = BX(this.button_show_next);
+                BX.bind(this.obButtonShowNext, 'click', BX.proxy(this.showNextSend, this));
+            }
+            // tag
+            if (this.button_tag.length > 0)
+            {
+                this.obButtonTag = BX(this.button_tag);
+                BX.bind(this.obButtonTag, 'click', BX.proxy(this.showTag, this));
+            }
+            // select
+            if (this.select.length > 0)
+            {
+                this.obSelect = BX(this.select);
+                BX.bind(this.obSelect, 'click', BX.proxy(this.toggleSelectContainer, this));
+            }
+
+        },
+        showNextSend: function (e)
+        {
+            BX.PreventDefault(e);
+            BX.ajax.post(
+                this.obButtonShowNext.getAttribute("href"),
+                {'ajax_get_page': 'y'},
+                BX.proxy(this.showNextResult, this)
+            );
+        },
+        showNextResult: function (arResult)
+        {
+            BX.remove(this.obPaginationContainer);
+            this.obNewsListContainer.insertAdjacentHTML("beforeEnd", arResult);
+            history.pushState(null, null, this.obButtonShowNext.getAttribute("href"));
+
+        },
+        showTag: function (e)
+        {
+            BX.PreventDefault(e);
+            BX.ajax.post(
+                this.obButtonTag.getAttribute("href"),
+                {'ajax_get_page': 'y'},
+                BX.proxy(this.showTagResult, this)
+            );
+        },
+        showTagResult: function (arResult)
+        {
+            var fields = BX.findChild(BX.findParent(this.obButtonTag, {class: "tag_list"}), {
+                tag: "a"
+            }, true, true);
+
+            fields.forEach(function(element){
+                BX.removeClass(element, "act");
+            });
+
+            BX.addClass(this.obButtonTag, "act");
+
+            BX.remove(this.obPaginationContainer);
+            this.obNewsListContainer.innerHTML = arResult;
+            history.pushState(null, null, this.obButtonTag.getAttribute("href"));
+        },
+        toggleSelectContainer: function ()
+        {
+            BX.toggleClass(BX.findParent(this.obSelect, {class: "select"}), "open");
+        }
+
+    };
+})(window);

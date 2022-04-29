@@ -1,0 +1,84 @@
+(function (window) {
+    'use strict';
+
+    if (window.JCVGSearchForm)
+        return;
+
+    window.JCVGSearchForm = function (arParams)
+    {
+        this.error = false;
+
+        this.form = "";
+        this.form_container_result = "";
+        this.search_input = "";
+
+        this.url = "";
+        this.result = "";
+
+        this.obForm = null;
+        this.obFormContainerResult = null;
+        this.obSearchInput = null;
+
+        this.form = arParams.FORM_ID;
+        this.form_container_result = arParams.FORM_RESULT_CONTAINER;
+        this.search_input = arParams.SEARCH_INPUT;
+        this.url = arParams.AJAX_URL;
+
+        //init
+        if (!this.error)
+        {
+            BX.ready(BX.delegate(this.init,this));
+        }
+    };
+
+
+    window.JCVGSearchForm.prototype = {
+        init: function ()
+        {
+            this.obForm = BX(this.form);
+            this.obFormContainerResult = BX(this.form_container_result);
+            this.obSearchInput = BX(this.search_input);
+
+            BX.bind(this.obSearchInput, 'keyup', BX.proxy(this.keyUp, this));
+        },
+        keyUp: function ()
+        {
+            this.sendToSearch();
+        },
+        sendToSearch: function ()
+        {
+            BX.ajax({
+                method: 'POST',
+                dataType: 'json',
+                url: this.url,
+                data: {
+                    q: this.obSearchInput.value
+                },
+                onsuccess: BX.proxy(this.sendToSearchResult, this)
+
+            });
+        },
+        sendToSearchResult: function (arResult)
+        {
+            this.result = arResult;
+            this.setToResultContainer();
+        },
+        setToResultContainer: function ()
+        {
+            var htmlResult = "";
+
+            for (var item_id in this.result)
+            {
+                htmlResult += this.createItemResult(this.result[item_id]);
+            }
+            this.obFormContainerResult.innerHTML = "";
+            this.obFormContainerResult.insertAdjacentHTML("beforeEnd", htmlResult);
+        },
+        createItemResult: function (item)
+        {
+            return '<li id="'+ item.ID +'"><a href="'+ item.URL +'">'+ item.TITLE_FORMATED +'</a></li>';
+        }
+
+    };
+
+})(window);

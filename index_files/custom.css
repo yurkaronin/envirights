@@ -1,0 +1,28 @@
+.pag_list > li a.act {
+  color: var(--c1); }
+
+.al_inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch; }
+
+.al_img {
+  overflow: hidden;
+  flex-grow: 1; }
+  .al_img > img {
+    height: 100%;
+    object-fit: cover; }
+
+@media screen and (min-width: 1021px) {
+  .al_name {
+    min-height: 70px; } }
+.tag_list > li a.act {
+  color: #FFF;
+  background: var(--c1);
+  border-color: transparent; }
+
+
+.article_content img {
+  width: 100%; }
+
+/*# sourceMappingURL=custom.css.map */

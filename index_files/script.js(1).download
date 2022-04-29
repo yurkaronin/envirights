@@ -1,0 +1,188 @@
+(function (window){
+    'use strict';
+
+    if (window.JCVGFeedbackForm)
+        return;
+
+    window.JCVGFeedbackForm = function (arParams)
+    {
+        this.error = false;
+
+        this.form = "";
+        this.form_container = "";
+        this.questions = "";
+
+        this.obForm = null;
+        this.obFormContainer = null;
+
+        this.form = arParams.FORM_ID;
+        this.form_container = arParams.FORM_CONTAINER;
+        this.questions = arParams.QUESTIONS;
+        this.politic = arParams.POLITIC_ID;
+
+        this.obPolitic = null;
+
+        //init
+        if (!this.error)
+        {
+            BX.ready(BX.delegate(this.init,this));
+        }
+    };
+
+    window.JCVGFeedbackForm.prototype = {
+        init: function ()
+        {
+            this.obForm = BX(this.form);
+            this.obPolitic = BX(this.politic);
+            this.obFormContainer = BX(this.form_container);
+
+            BX.bind(this.obForm, 'submit', BX.proxy(this.submit, this));
+            this.bindInput();
+            BX.bind(this.obPolitic, 'change', BX.proxy(this.politicChange, this));
+
+        },
+        politicChange: function (e)
+        {
+            let $obPolitic = $(`#${this.politic}`);
+
+            if ($obPolitic.prop("checked"))
+            {
+                $obPolitic.parent().removeClass("error");
+            }
+            else
+            {
+                $obPolitic.parent().addClass("error");
+            }
+        },
+        submit: function (e)
+        {
+            BX.PreventDefault(e);
+            let $obPolitic = $(`#${this.politic}`);
+
+            if ($obPolitic.prop("checked"))
+            {
+                this.sendToSubmit();
+                $obPolitic.parent().removeClass("error");
+            }
+            else
+            {
+                $obPolitic.parent().addClass("error");
+            }
+
+
+        },
+        sendToSubmit: function ()
+        {
+            BX.ajax({
+                method: 'POST',
+                dataType: 'json',
+                url: this.obForm.getAttribute("action"),
+                data: $(this.obForm).serialize(),
+                onsuccess: BX.proxy(this.submitResult, this)
+
+            });
+        },
+        submitResult: function (response)
+        {
+            var QUESTIONS = response.QUESTIONS,
+                REDIRECT_URL = response.REDIRECT_URL;
+
+            if (JSON.stringify(QUESTIONS) !== "{}")
+            {
+                for(var FIELD_CODE in QUESTIONS)
+                {
+
+                    var field = BX(this.form + "_" + FIELD_CODE);
+                    var field_error = BX(this.form + "_" + FIELD_CODE + "-error");
+
+                    var parent = BX.findParent(field, {
+                        "class" : "input"
+                    });
+
+                    if (
+                        typeof QUESTIONS[FIELD_CODE].ERROR_MESSAGE !== "undefined" &&
+                        QUESTIONS[FIELD_CODE].ERROR_MESSAGE !== "")
+                    {
+                        BX.addClass(parent, "error");
+                        field_error.innerText = QUESTIONS[FIELD_CODE].ERROR_MESSAGE;
+                    }
+                    else
+                    {
+                        BX.removeClass(parent, "error");
+                        field_error.innerText = "";
+                    }
+                }
+            }
+
+
+            if (
+                typeof response.isFormNote !== "undefined" &&
+                response.isFormNote === "Y"
+            )
+            {
+                this.showSuccess(response.FORM_NOTE, REDIRECT_URL);
+            }
+        },
+        showSuccess: function (FORM_NOTE, REDIRECT_URL)
+        {
+            this.obForm.remove();
+            this.obFormContainer.insertAdjacentHTML("beforeEnd", FORM_NOTE);
+            history.pushState(null, null, REDIRECT_URL);
+        },
+        bindInput: function ()
+        {
+            for (var FIELD_CODE in this.questions)
+            {
+                BX.bind(BX(this.form + "_" + FIELD_CODE), 'focus', BX.proxy(this.focus, this));
+                BX.bind(BX(this.form + "_" + FIELD_CODE), 'focusout', BX.proxy(this.focusOut, this));
+                BX.bind(BX(this.form + "_" + FIELD_CODE), 'keyup', BX.proxy(this.keyUp, this));
+            }
+        },
+        focus: function (e)
+        {
+            BX.addClass(
+                BX.findParent(e.target, {
+                    "class" : "animated-labels"
+                }),
+                "input-filed"
+            );
+        },
+        focusOut: function (e)
+        {
+            if ("" != e.target.value && " " != e.target.value)
+                BX.addClass(
+                    BX.findParent(e.target, {
+                        "class" : "animated-labels"
+                    }),
+                    "input-filed"
+                );
+            else
+                BX.removeClass(
+                    BX.findParent(e.target, {
+                        "class" : "animated-labels"
+                    }),
+                    "input-filed"
+                );
+        },
+        keyUp: function (e)
+        {
+            if ("" != e.target.value && " " != e.target.value)
+                BX.removeClass(
+                    BX.findParent(e.target, {
+                        "class" : "input"
+                    }),
+                    "error"
+                );
+            else
+                BX.addClass(
+                    BX.findParent(e.target, {
+                        "class" : "input"
+                    }),
+                    "error"
+                );
+        }
+    };
+
+})(window);
+
+

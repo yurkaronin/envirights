@@ -1,0 +1,6 @@
+.hl_nav > li a.act {
+  color: var(--c1); }
+  .hl_nav > li a.act:before {
+    opacity: 1; }
+
+/*# sourceMappingURL=style.css.map */

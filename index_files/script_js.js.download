@@ -1,0 +1,72 @@
+// h100
+$(function(){
+	resizeHeader();
+});
+	function resizeHeader(){
+	var w=window,
+	d=document,
+	e=d.documentElement,
+	g=d.getElementsByTagName('body')[0],
+	x=w.innerWidth||e.clientWidth||g.clientWidth,
+	y=w.innerHeight||e.clientHeight||g.clientHeight;
+	wihdowH = y;
+	$(".h100").css({'height':(wihdowH-0) + 'px'});
+}
+$(window).resize(function(){
+	resizeHeader();
+});
+
+// fixed_nav
+$(function(){
+    $(window).scroll(function() {
+        var top = $(document).scrollTop();
+        var height1 = $(document).height()-$(window).height()-100;   
+        var result =  $(document).scrollTop();
+        if (top < 660)
+        {
+        	$(".nav_scroll").removeClass("nav_scroll_act");
+        }
+        else
+        {
+        	$(".nav_scroll").addClass("nav_scroll_act");
+        }
+    });
+});
+
+// popup_open
+$(document).ready(function(){
+
+	$(".ht_btn_call, #pu_call .closeform, .fb_call").click(function(){
+		$(".popup_rgba").fadeToggle(400);
+		$("#pu_call").fadeToggle(700);
+		$("body").toggleClass("overflow");
+		return false;
+	});
+
+	// pu_nav
+	$(".hl_nav_ico, .closenav").click(function(){
+		$(".pu_nav").fadeToggle(400);
+		$("body").toggleClass("overflow");
+		return false;
+	});
+
+	// pu search
+	$(".hl_search_ico, .pu_search_close").click(function(){
+		$(".pu_search").slideToggle(200);
+		$("body").toggleClass("overflow");
+		return false;
+	});
+
+});
+
+// Закрытие окна при клике на пустое место
+$(document).mouseup(function (e){
+	var div = $(".hl_search_ico, .pu_search, .pu_nav");
+	if (!div.is(e.target)
+	    && div.has(e.target).length === 0) {
+			// Поиск
+			$(".pu_search").slideUp(200);
+			$("body").removeClass("overflow");
+			return false;
+	}
+});
