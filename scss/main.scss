@@ -91,6 +91,34 @@
 
 }
 
+.contact_content--solo {
+  display: flex;
+  justify-content: center;
+}
+
+.in_2_inner--full {
+  width: 100%;
+  max-width: 100%;
+
+  .contact_form .form-group .politic--mod {
+    position: initial !important;
+
+  }
+
+}
+
+.in_2--solo {
+  flex-wrap: wrap;
+  gap: 16px 0;
+
+}
+
+.politic--mod {
+  font-size: 16px;
+  line-height: 1;
+  color: #242222;
+}
+
 @media (max-width: 1250px) {
   .cf_nav--flex {
     .button {
