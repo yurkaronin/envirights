@@ -1,4 +1,4 @@
-// текстовый блок под заголовком 
+// текстовый блок под заголовком
 .contact_content--mod {
   margin-top: 20px;
   max-width: 490px;
@@ -20,7 +20,15 @@
 
 }
 
-// новые кнопки 
+.contact_info {
+  a {
+    color: #3F9F45;
+    text-decoration: underline;
+  }
+}
+
+
+// новые кнопки
 .button,
 .contact_info .button {
   background: #3F9F45;
@@ -42,12 +50,12 @@
   }
 }
 
-// новые текстовые блоки 
+// новые текстовые блоки
 .contact_info__text {
   margin-bottom: 34px;
 }
 
-// обёртка для кнопок 
+// обёртка для кнопок
 .button-wrap {
   display: flex;
   flex-wrap: wrap;
@@ -60,7 +68,7 @@
   }
 }
 
-// ссылка в форме 
+// ссылка в форме
 .custom-form-link {
   font-weight: 400;
   font-size: 12px;
@@ -79,7 +87,7 @@
   }
 }
 
-// костыли 
+// костыли
 .politic--mod {
   &.error {
     color: #242222;
@@ -94,6 +102,24 @@
 .contact_content--solo {
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  gap: 32px;
+  align-items: center;
+}
+
+.copy-mod {
+  width: 48.7%;
+  small {
+    font-size: 16px;
+    line-height: 24px;
+    color: #9B9A9A;
+
+    span {
+      color: #242222;
+    }
+  }
+
+
 }
 
 .in_2_inner--full {
@@ -119,6 +145,27 @@
   color: #242222;
 }
 
+.in_2_inner--small {
+  width: 33%;
+  flex-grow: 0;
+}
+
+.in_2_inner--hangry {
+  flex-grow: 2;
+}
+
+.form-control:focus {
+  border-color: #3F9F45 !important;
+  background: #FFF;
+}
+
+.contact_form .form-group label:not(.error).active ,
+.form-group .custom-label.active {
+  font-size: 10px;
+  top: 5px;
+  color: #929191;
+}
+
 @media (max-width: 1250px) {
   .cf_nav--flex {
     .button {
@@ -133,6 +180,9 @@
       width: calc(50% - 8px);
     }
   }
+  .copy-mod {
+    width: auto;
+  }
 }
 
 @media (max-width: 620px) {
@@ -143,3 +193,14 @@
     }
   }
 }
+
+
+@media (max-width: 460px) {
+  .contact_content--solo {
+    .contact_form {
+      margin-top: 26px;
+      width: 100%;
+    }
+  }
+}
+
