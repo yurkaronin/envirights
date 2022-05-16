@@ -287,7 +287,7 @@
                       Email<span class="starrequired">*</span> </label>
                     <div class="input">
                       <label id="-error" class="error" for=""></label>
-                      <input id="DATA-EMAIL" class="form-control required" type="text" name="EMAIL" value="">
+                      <input id="DATA-EMAIL" class="form-control required" type="email" name="EMAIL" value="">
                     </div>
                   </div>
                 </div>
@@ -298,7 +298,7 @@
                       Телефон</label>
                     <div class="input">
                       <label id="-error" class="error" for=""></label>
-                      <input id="DATA-TELEPHONE" class="form-control required" type="text" name="TELEPHONE" value="">
+                      <input id="DATA-TELEPHONE" class="form-control required" type="tel" name="TELEPHONE" value="">
                     </div>
                   </div>
                 </div>
@@ -405,26 +405,6 @@
             РФ", в обращении в форме электронного документа должны указываться ФИО заявителя и адрес его электронной
             почты.</small>
         </div>
-
-        <script>
-          let custLabels = document.querySelectorAll('.animated-labels label');
-
-          let formInputs = document.querySelectorAll('.form-control');
-
-
-          for (let formInput of formInputs) {
-            formInput.onfocus = function () {
-              let parent = this.closest('.form-group');
-              parent.querySelector('.custom-label').classList.add('active');
-            }
-            formInput.onblur = function () {
-              let parent = this.closest('.form-group');
-              parent.querySelector('.custom-label').classList.remove('active');
-            }
-
-          }
-
-        </script>
 
 
       </div>
@@ -573,6 +553,8 @@
         sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox"
         style="width: 100%; height: 100%;"></iframe></div>
   </div>
+
+  <script src="./js/main.js"></script>
 </body>
 
 </html>
