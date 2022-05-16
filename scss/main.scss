@@ -109,6 +109,7 @@
 
 .copy-mod {
   width: 48.7%;
+
   small {
     font-size: 16px;
     line-height: 24px;
@@ -159,11 +160,56 @@
   background: #FFF;
 }
 
-.contact_form .form-group label:not(.error).active ,
+.contact_form .form-group label:not(.error).active,
 .form-group .custom-label.active {
   font-size: 10px;
   top: 5px;
   color: #929191;
+}
+
+.custom-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-left: 46px;
+    margin-bottom: 16px;
+    padding-top: 5px;
+
+    span {
+      background: #3F9F45;
+      font-family: inherit;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 1.7;
+      text-align: center;
+      color: #FFFFFF;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      left: 0;
+      width: 32px;
+      height: 32px;
+      border-radius: 100%;
+    }
+  }
+}
+
+.cust-select {
+  width: 100%;
+  padding: 16px 24px;
+  background-color: #F0EFEF;
+  border: 1px solid #F0EFEF;
+  border-radius: 6px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1;
 }
 
 @media (max-width: 1250px) {
@@ -180,6 +226,7 @@
       width: calc(50% - 8px);
     }
   }
+
   .copy-mod {
     width: auto;
   }
@@ -203,4 +250,3 @@
     }
   }
 }
-
