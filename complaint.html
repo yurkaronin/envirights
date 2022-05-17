@@ -156,6 +156,8 @@
 
   <!-- /Yandex.Metrika counter -->
 
+  <link rel="stylesheet" href="libs/filepond.min.css">
+  <link rel="stylesheet" href="libs/choices.min.css">
   <link rel="stylesheet" href="css/main.min.css">
 </head>
 
@@ -280,16 +282,26 @@
                 </div>
 
                 <div class="in_2_inner in_2_inner--full">
-                  <textarea name="" id="">[дд.мм.гггг – укажите дату, когда вы обнаружили свалку] на территории [укажите место расположения свалки – город, район, муниципалитет, территория такого-то предприятия и т.п.] мною была выявлена несанкционированная свалка отходов производства и потребления. Согласно данным публичной кадастровой карты, участок, на котором допущено несанкционированное размещение отходов, имеет номер [укажите кадастровый номер участка, если он вам известен - узнать его можно на карте Росреестра]</textarea>
+                  <textarea name=""
+                    id="">[дд.мм.гггг – укажите дату, когда вы обнаружили свалку] на территории [укажите место расположения свалки – город, район, муниципалитет, территория такого-то предприятия и т.п.] мною была выявлена несанкционированная свалка отходов производства и потребления. Согласно данным публичной кадастровой карты, участок, на котором допущено несанкционированное размещение отходов, имеет номер [укажите кадастровый номер участка, если он вам известен - узнать его можно на карте Росреестра]</textarea>
                 </div>
 
               </div>
 
               <div class="cf_nav cf_nav--flex  cf_nav--full">
-                <div class="custom-dwnload-btn btn_form button button--three">
+
+                <div class="attach-file">
+                  <label class="download-file attach-file__block">
+                    <div class="custom-dwnload-btn btn_form button button--three" type="submit">Есть что приложить к письму?</div>
+                    <input id="filePush" class="filepond" type="file" multiple>
+                    <div class="attach-file__block"></div>
+                  </label>
+                </div>
+
+                <!-- <div class="custom-dwnload-btn btn_form button button--three">
                   <input class="visibility-hidden" type="file" name=" FILE" id="DATA-FILE">
                 <label for="DATA-FILE" class="button__label">Есть что приложить к письму?</label>
-                </div>
+                </div> -->
                 <button class="custom-dwnload-btn btn_form button" type="submit">скачать обращение</button>
               </div>
 
@@ -492,6 +504,10 @@
         sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox"
         style="width: 100%; height: 100%;"></iframe></div>
   </div>
+  <script src="./libs/inputmask.js"></script>
+  <script src="./libs/filepond.min.js"></script>
+  <script src="./libs/filepond-plugin-file-encode.js"></script>
+  <script src="./libs/choices.min.js"></script>
   <script src="./js/main.js"></script>
 </body>
 
