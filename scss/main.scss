@@ -264,9 +264,23 @@ select::-ms-expand {
 .cf_nav--full {
   flex-direction: column;
 
-  .button {
+  .button,
+  .attach-file--button {
     width: 100%;
   }
+}
+
+.filepond--drop-label {
+  display: none !important;
+}
+
+.attach-file .filepond fieldset {
+  display: flex;
+  align-items: center;
+}
+
+.attach-file .filepond .filepond--file .filepond--action-remove-item {
+  transform: translateY(0px) !important;
 }
 
 .custom-dwnload-btn {
@@ -350,37 +364,9 @@ select::-ms-expand {
   line-height: 1 !important;
 }
 
-// .filepond--root {
-//   width: 100%;
-//   margin: 0;
-// }
-
-// .filepond--root .filepond--drop-label {
-//   color: #3F9F45;
-//   font-family: inherit;
-//   font-style: normal;
-//   font-weight: 700;
-//   font-size: 12px;
-//   line-height: 1;
-//   text-align: center;
-//   letter-spacing: 0.03em;
-//   text-transform: uppercase;
-//   cursor: pointer;
-//   border-radius: 6px;
-//   overflow: hidden;
-//   border: 1px solid #3F9F45;
-// }
-
-// .filepond--panel-root {
-//   background-color: transparent !important;
-// }
-
-// .filepond--root .filepond--drop-label {
-//   min-height: 50px;
-// }
-
-
-// адаптив
+.attach-file .filepond legend {
+  line-height: initial;
+}
 
 @media (max-width: 1250px) {
   .cf_nav--flex {
@@ -407,6 +393,21 @@ select::-ms-expand {
     .button {
       width: calc(50% - 8px);
     }
+  }
+
+  .contact_info--mod-two {
+    max-width: 100%;
+  }
+
+  .cf_nav--full-aks .custom-dwnload-btn {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 767px) {
+  .attach-file {
+    padding: 0;
   }
 }
 
