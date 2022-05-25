@@ -368,17 +368,32 @@ select::-ms-expand {
   line-height: initial;
 }
 
-.attach-file .filepond .filepond--file .filepond--action-remove-item::before {
-  background-color: #242222;
+.filepond--file-action-button::before,
+.filepond--file-action-button::after {
+  background-color: #242222 !important;
 }
 
 .filepond--file-action-button:hover::before,
-.filepond--file-action-button:focus::before {
-  background-color: #3F9F45;
+.filepond--file-action-button:focus::before,
+.filepond--file-action-button:hover::after,
+.filepond--file-action-button:focus::after {
+  background-color: #3F9F45 !important;
 }
 
 .filepond--root {
   height: auto !important;
+}
+
+.attach-file {
+  margin-bottom: 0;
+}
+
+.choices__placeholder {
+  opacity: 1;
+}
+
+.choices.is-disabled .choices__placeholder {
+  opacity: 0.4;
 }
 
 @media (max-width: 1250px) {
