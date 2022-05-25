@@ -368,6 +368,19 @@ select::-ms-expand {
   line-height: initial;
 }
 
+.attach-file .filepond .filepond--file .filepond--action-remove-item::before {
+  background-color: #242222;
+}
+
+.filepond--file-action-button:hover::before,
+.filepond--file-action-button:focus::before {
+  background-color: #3F9F45;
+}
+
+.filepond--root {
+  height: auto !important;
+}
+
 @media (max-width: 1250px) {
   .cf_nav--flex {
     .button {
